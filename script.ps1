@@ -1,3 +1,18 @@
+# Check if the script is running as Administrator
+If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    # If not running as Administrator, re-launch the script with elevated privileges
+    Write-Host "This script requires Administrator privileges."
+    Read-Host -Prompt "Press Enter to grant Administrator privileges."
+    $arguments = "& '" + $myinvocation.MyCommand.Definition + "'"
+    Start-Process powershell -ArgumentList $arguments -Verb runAs
+    Exit
+}
+
+# Optional: Create System Restore Point --planned to release--
+# Write-Host "Creating Restore Point..."
+# Checkpoint-Computer -Description "Before Win11 Optimization" -RestorePointType "MODIFY_SETTINGS"
+# Pause
+
 #Setting power configuration for better performance
 powercfg /setactive SCHEME_BALANCED
 
@@ -17,4 +32,4 @@ powercfg /l
 
 Write-Output "Balanced plan is now optimized for performance without disabling the Windows 11 power slider."
    
-Pause
+Read-Host -Prompt "Press Enter to exit"
