@@ -1,7 +1,20 @@
 #Setting power configuration for better performance
-powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+powercfg /setactive SCHEME_BALANCED
+
+# Set Minimum and Maximum Processor State to 100%
+powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR PROCTHROTTLEMIN 100
+powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR PROCTHROTTLEMAX 100
+
+# Disable core parking (optional)
+powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR CPMINCORES 100
+powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR CPMAXCORES 100
+
+# Apply the changes
+powercfg /setactive SCHEME_BALANCED
+
+
 powercfg /l
 
-Write-Output "If there is a star displayed on the High Performance line, then this script was executed succesfully"
+Write-Output "Balanced plan is now optimized for performance without disabling the Windows 11 power slider."
    
 Pause
