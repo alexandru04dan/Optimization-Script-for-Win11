@@ -1,3 +1,5 @@
 #Setting power configuration for better performance
-powercfg /setactive DED574B5-45A0-4F42-8737-46345C09C238
+powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+
+   
 Pause
