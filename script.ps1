@@ -8,10 +8,22 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     Exit
 }
 
-# Optional: Create System Restore Point --planned to release--
-# Write-Host "Creating Restore Point..."
-# Checkpoint-Computer -Description "Before Win11 Optimization" -RestorePointType "MODIFY_SETTINGS"
-# Pause
+#Restore point section
+$responseBackup = Read-Host "Do you wish to create a restore point? (y/n)"
+
+$responseBackup = $responseBackup.Trim().ToLower()
+
+if ($responseBackup -eq 'y' -or $responseBackup -eq 'yes') {
+    Write-Host "Creating Restore Point..."
+    Checkpoint-Computer -Description "Before Win11 Optimization" -RestorePointType "MODIFY_SETTINGS"
+    Write-Host -Prompt "Restore Point created!"
+}
+elseif ($responseBackup -eq 'n' -or $responseBackup -eq 'no'){
+    Write-Host -Prompt "No restore point created :("
+}
+else {
+    Write-Host -Prompt "Invalid input. Please enter Y or N."
+}
 
 #Setting power configuration for better performance
 powercfg /setactive SCHEME_BALANCED
