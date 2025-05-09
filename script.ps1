@@ -16,32 +16,35 @@ $responseBackup = $responseBackup.Trim().ToLower()
 if ($responseBackup -eq 'y' -or $responseBackup -eq 'yes') {
     Write-Host "Creating Restore Point..."
     Checkpoint-Computer -Description "Before Win11 Optimization" -RestorePointType "MODIFY_SETTINGS"
-    Write-Host -Prompt "Restore Point created!"
+    Write-Host "Restore Point created!"
 }
 elseif ($responseBackup -eq 'n' -or $responseBackup -eq 'no'){
-    Write-Host -Prompt "No restore point created :("
+    Write-Host "No restore point created :("
 }
 else {
-    Write-Host -Prompt "Invalid input. Please enter Y or N."
+    Write-Host "Invalid input. Please enter Y or N."
 }
 
-#Setting power configuration for better performance
-powercfg /setactive SCHEME_BALANCED
+#Change power plan mode section
+$responsePowerManagement = Read-Host "Do you wish to change the Power mode to Better effeciency? (NOT RECOMMENDED FOR LAPTOPS) (y/n)"
 
-# Set Minimum and Maximum Processor State to 100%
-powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR PROCTHROTTLEMIN 100
-powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR PROCTHROTTLEMAX 100
+$responsePowerManagement = $responsePowerManagement.Trim().ToLower()
 
-# Disable core parking (optional)
-powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR CPMINCORES 100
-powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR CPMAXCORES 100
+if ($responsePowerManagement -eq 'y' -or $responsePowerManagement -eq 'yes') {
+    Write-Host "Changing power mode"
+    powercfg /setactive SCHEME_BALANCED
+    powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR PROCTHROTTLEMIN 100
+    powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR PROCTHROTTLEMAX 100
+    powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR CPMINCORES 100
+    powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR CPMAXCORES 100
+    powercfg /setactive SCHEME_BALANCED
+    Write-Host "Power mode changes have been made!"
+}
+elseif ($responsePowerManagement -eq 'n' -or $responsePowerManagement -eq 'no'){
+    Write-Host "No power mode changes have been made :("
+}
+else {
+    Write-Host "Invalid input. Please enter Y or N."
+}
 
-# Apply the changes
-powercfg /setactive SCHEME_BALANCED
-
-
-powercfg /l
-
-Write-Output "Balanced plan is now optimized for performance without disabling the Windows 11 power slider."
-   
 Read-Host -Prompt "Press Enter to exit"
