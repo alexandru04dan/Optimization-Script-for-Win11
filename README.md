@@ -6,4 +6,6 @@ Although, if you are brave enough to test it yourself, paste the following in yo
 ```iex (iwr "https://raw.githubusercontent.com/alexandru04dan/Optimization-Script-for-Win11/refs/heads/master/script.ps1")```
 
 
-v1.0: Only changes your power scheme to achieve better performance, tested on Windows 11 Pro 24h2
+v1.0:
+- Creates a backup point
+- Makes changes to the power plan mode
