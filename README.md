@@ -10,3 +10,4 @@ iwr https://raw.githubusercontent.com/alexandru04dan/Optimization-Script-for-Win
 ## v1.0: ##
 - 🛡️ Creates a system restore point
 - ⚡ Adjusts power plan settings for better performance
+- ❌ Turns off visual effects and animations
