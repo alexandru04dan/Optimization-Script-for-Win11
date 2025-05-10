@@ -8,6 +8,28 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     Exit
 }
 
+#Welcome section
+
+#Do not touch the indentations bellow, for some reason this ASCII art does not look right on my end
+
+Write-Host "//////////////////////////////////////////////////////////////////////////////////"
+Write-Host "//                                                                              //"
+Write-Host "//     ___        _   _           _          _   _                              //"
+Write-Host "//    / _ \ _ __ | |_(_)_ __ ___ (_)______ _| |_(_) ___  _ __                   //"
+Write-Host "//   | | | | '_ \| __| | '_ ` _ \ | |_  / _`| __  | |/ _ \| '_ \                  //"
+Write-Host "//   | |_| | |_) | |_| | | | | | | |/ / (_| | |_| | (_) | | | |                 //"
+Write-Host "//    \___/| .__/ \__|_|_| |_|_|_|_/___\__,_|\__|_|\___/|_| |_|__       _ _     //"
+Write-Host "//   / ___||_|__ _ __(_)_ __ | |_   / _| ___  _ __  \ \      / (_)_ __ / / |    //"
+Write-Host "//   \___ \ / __| '__| | '_ \| __| | |_ / _ \| '__|  \ \ /\ / /| | '_ \| | |    //"
+Write-Host "//    ___) | (__| |  | | |_) | |_  |  _| (_) | |      \ V  V / | | | | | | |    //"
+Write-Host "//   |____/ \___|_|  |_| .__/ \__| |_|  \___/|_|       \_/\_/  |_|_| |_|_|_|    //"
+Write-Host "//                     |_|                                                      //"
+Write-Host "//                                                                              //"
+Write-Host "//////////////////////////////////////////////////////////////////////////////////"
+
+
+
+
 #Restore point section
 $responseBackup = Read-Host "Do you wish to create a restore point? (y/n)"
 
